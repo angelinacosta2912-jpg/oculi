@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admonitio — Cultus</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #080707;
+  color: #d9cec7;
+  font-family: Georgia, serif;
+  padding: 25px 14px;
+}
+
+main {
+  max-width: 700px;
+  margin: auto;
+}
+
+header {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.logo {
+  width: 145px;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.small {
+  color: #a71912;
+  font: 11px monospace;
+  letter-spacing: 3px;
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: normal;
+  letter-spacing: 5px;
+  margin: 12px 0;
+}
+
+.line {
+  height: 1px;
+  background: #68100c;
+  margin: 22px 0;
+}
+
+.letter {
+  border: 1px solid #45110e;
+  background: #0e0909;
+  padding: clamp(20px, 5vw, 40px);
+  box-shadow: 0 0 25px #30000022;
+}
+
+.letter p {
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+strong {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.signature {
+  color: #b42a22;
+  text-align: right;
+  font-style: italic;
+}
+
+.notice {
+  color: #7d514b;
+  text-align: center;
+  font: 10px/2 monospace;
+  letter-spacing: 1px;
+  margin: 25px 0;
+}
+
+.gate {
+  border-top: 1px solid #55130f;
+  border-bottom: 1px solid #55130f;
+  padding: 25px 0;
+}
+
+h2 {
+  text-align: center;
+  color: #bd3026;
+  font: 12px monospace;
+  letter-spacing: 2px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  background: #050404;
+  color: white;
+  border: 1px solid #65201a;
+  font: 16px monospace;
+  margin-top: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  background: #310b09;
+  color: #f1e6df;
+  border: 1px solid #84221a;
+  font: bold 12px monospace;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #57100c;
+}
+
+#feedback {
+  color: #d52d22;
+  text-align: center;
+  font: 12px monospace;
+  margin-top: 15px;
+  min-height: 20px;
+}
+
+#question, #coward, #morse {
+  display: none;
+  text-align: center;
+  margin-top: 25px;
+}
+
+#question h3 {
+  font-size: 25px;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.choices {
+  display: flex;
+  gap: 12px;
+}
+
+#coward {
+  color: #e33126;
+  font: bold 25px monospace;
+  letter-spacing: 5px;
+  padding: 25px;
+  border: 1px solid #55130f;
+}
+
+#morse {
+  border: 1px solid #55130f;
+  padding: 20px;
+  background: #0d0808;
+}
+
+#morse p {
+  color: #f0e6de;
+  font: 17px/2 monospace;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  color: #62302b;
+  font: 10px/2 monospace;
+  margin-top: 30px;
+}
+
+@media (max-width: 400px) {
+  .choices { flex-direction: column; gap: 0; }
+  h1 { font-size: 27px; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header>
+  <!-- Coloque o arquivo do símbolo na mesma pasta com o nome simbolo-culto.png -->
+  <img class="logo" src="simbolo-culto.png" alt="Símbolo do Culto">
+  <div class="small">SCRIPTUM OCCULTUM</div>
+  <h1>ADMONITIO</h1>
+  <div class="line"></div>
+  <div class="small">LEGITE · MEMINERITIS · OBEDITE</div>
+</header>
+
+<article class="letter">
+  <div class="small">AD EOS QUI VIDENT — AVISO</div>
+
+  <p>
+    Quando <strong>O</strong> <strong>quinto</strong> cristal enfim se
+    manifestar, a terra estremecerá sob o peso de sua vinda, e sua
+    outrora sublime beleza será maculada pela mão pútrida daquele que,
+    movido por egoísmo, ousou profaná-la.
+  </p>
+
+  <p>
+    Não vos entregueis ao temor, pois o <strong>guardião</strong>
+    <strong>primeiro</strong> permanece vigilante perante todas as coisas.
+    Aquele que <strong>tudo</strong> contempla jamais se deixa ludibriar,
+    pois <strong>vê</strong> <strong>tudo</strong>, mesmo aquilo que se
+    oculta sob o mais profundo véu das trevas.
+  </p>
+
+  <p>
+    Sobre os indignos recairá a devida <strong>punição</strong>,
+    irrevogável e proporcional aos seus pecados; enquanto aos
+    <strong>cegos</strong> será concedida a oportunidade de abandonar
+    a escuridão e trilhar o caminho que lhes foi destinado.
+  </p>
+
+  <p>
+    Que estas palavras sejam recebidas não como mera advertência,
+    mas como um desígnio irrevogável. Assim será cumprido.
+    Assim será consumado.
+  </p>
+
+  <div class="signature">— Sub sigillo Cultus</div>
+</article>
+
+<div class="notice">
+  NON OMNIA SCRIPTA LEGUNTUR<br>
+  NON OMNES OCULI VIDENT
+</div>
+
+<section class="gate">
+  <h2>CLAVIS VERBI</h2>
+
+  <form id="passwordForm">
+    <label for="password" class="small">SEQUENTIA SECRETUM</label>
+    <input id="password" placeholder="..." autocomplete="off" required>
+    <button type="submit">REVELARE</button>
+  </form>
+
+  <div id="feedback"></div>
+
+  <div id="question">
+    <div class="line"></div>
+    <h3>Você quer jogar um jogo?</h3>
+    <div class="choices">
+      <button id="yes" type="button">SIM</button>
+      <button id="no" type="button">NÃO</button>
+    </div>
+  </div>
+
+  <div id="coward">COVARDE</div>
+
+  <div id="morse">
+    <h2>NUNTIUS — TRANSMISSIO RECUPERATA</h2>
+    <p>
+      -.-. .- ... .- / .---- --... --..-- / ..-. .-.. --- .-. . ...
+      - .- / -.. .- / .- .-.. ...- --- .-. .- -.. .- --..-- /
+      -... --- .- / ... --- .-. - .
+    </p>
+    <div class="small">SIGNUM IN MORSE</div>
+  </div>
+</section>
+
+<footer>
+  SUB UMBRA · SUB SIGILLO · SUB SILENTIO<br>
+  FINIS NON EST FINIS
+</footer>
+
+</main>
+
+<script>
+const SENHA = "o primeiro guardiao";
+
+function normalizar(texto) {
+  return texto.trim()
+    .toLocaleLowerCase("pt-BR")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ");
+}
+
+const form = document.getElementById("passwordForm");
+const input = document.getElementById("password");
+const feedback = document.getElementById("feedback");
+const question = document.getElementById("question");
+const coward = document.getElementById("coward");
+const morse = document.getElementById("morse");
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (normalizar(input.value) === SENHA) {
+    form.style.display = "none";
+    feedback.textContent = "";
+    question.style.display = "block";
+  } else {
+    feedback.textContent = "CLAVIS REJECTA. TENTAI ITERUM.";
+    input.value = "";
+  }
+});
+
+document.getElementById("no").addEventListener("click", function() {
+  question.style.display = "none";
+  coward.style.display = "block";
+  morse.style.display = "none";
+});
+
+document.getElementById("yes").addEventListener("click", function() {
+  question.style.display = "none";
+  coward.style.display = "none";
+  morse.style.display = "block";
+});
+</script>
+
+</body>
+    </html>
+    
