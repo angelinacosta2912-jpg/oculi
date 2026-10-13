@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TERMINAL RESTRITO // ARQUIVO 017</title>
+  <style>
+    :root {
+      --green: #8cff9b;
+      --dim: #4b9a59;
+      --red: #ff6262;
+      --bg: #050806;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background:
+        radial-gradient(ellipse at center, rgba(17, 50, 25, .22), transparent 65%),
+        var(--bg);
+      color: var(--green);
+      font-family: "Courier New", monospace;
+    }
+
+    .terminal {
+      width: min(100%, 560px);
+      border: 1px solid var(--dim);
+      background: rgba(2, 8, 4, .96);
+      box-shadow: 0 0 32px rgba(70, 255, 100, .08);
+      padding: 25px;
+      position: relative;
+    }
+
+    .terminal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .12;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 3px,
+        rgba(140, 255, 155, .12) 4px
+      );
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--dim);
+      padding-bottom: 12px;
+      color: var(--dim);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .warning {
+      margin: 27px 0 8px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--red);
+    }
+
+    h1 {
+      font-size: clamp(24px, 7vw, 35px);
+      margin: 0 0 14px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(140, 255, 155, .25);
+    }
+
+    .description {
+      color: #a4c9aa;
+      line-height: 1.65;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 12px;
+    }
+
+    input {
+      width: 100%;
+      background: #020402;
+      color: var(--green);
+      border: 1px solid var(--dim);
+      padding: 14px;
+      border-radius: 0;
+      outline: none;
+      font: inherit;
+      letter-spacing: 2px;
+    }
+
+    input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 12px rgba(140, 255, 155, .12);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px solid var(--green);
+      background: var(--green);
+      color: #031006;
+      font: bold 12px "Courier New", monospace;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+    button:hover { background: #b4ffbd; }
+
+    #status {
+      min-height: 45px;
+      margin-top: 20px;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    #status.error { color: var(--red); }
+    #status.success { color: var(--green); }
+
+    .footer {
+      border-top: 1px solid #23482a;
+      margin-top: 18px;
+      padding-top: 13px;
+      color: #4b7952;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .blink { animation: blink 1s steps(2, start) infinite; }
+
+    @keyframes blink { to { visibility: hidden; } }
+
+    @media (max-width: 420px) {
+      .terminal { padding: 19px; }
+      .topline { font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="terminal">
+    <div class="topline">
+      <span>SISTEMA INTERNO // SB-017</span>
+      <span>CLASSIFICAÇÃO: ÔMEGA</span>
+    </div>
+
+    <p class="warning">⚠ ACESSO RESTRITO</p>
+    <h1>ARQUIVO 017</h1>
+    <p class="description">
+      Este terminal é monitorado.<br>
+      Apenas pessoal autorizado pode consultar os documentos.<br>
+      Insira a chave de autenticação para continuar.
+    </p>
+
+    <form id="loginForm">
+      <label for="password">CHAVE DE AUTORIZAÇÃO_</label>
+      <input id="password" name="password" type="password"
+             placeholder="••••••••••" autocomplete="off" required>
+      <button type="submit">AUTENTICAR ACESSO</button>
+    </form>
+
+    <div id="status" role="status" aria-live="polite"></div>
+
+    <div class="footer">
+      SERRA BRANCA // DEPARTAMENTO DE CONTENÇÃO<br>
+      NÃO COPIE • NÃO DISTRIBUA • NÃO QUESTIONE
+      <span class="blink">_</span>
+    </div>
+  </main>
+
+  <script>
+    /*
+      DEMONSTRAÇÃO: troque a senha e o endereço abaixo.
+      ATENÇÃO: uma senha guardada neste JavaScript pode ser descoberta
+      por qualquer pessoa que examine o código-fonte. Não é segurança real.
+    */
+    const SENHA = "CORVO017";
+    const PAGINA_SECRETA = "https://exemplo.com/arquivo-017";
+
+    const form = document.getElementById("loginForm");
+    const campo = document.getElementById("password");
+    const status = document.getElementById("status");
+    const botao = form.querySelector("button");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const tentativa = campo.value.trim();
+      status.className = "";
+      status.textContent = "VERIFICANDO CREDENCIAIS...";
+      botao.disabled = true;
+
+      setTimeout(function () {
+        if (tentativa === SENHA) {
+          status.className = "success";
+          status.textContent = "ACESSO AUTORIZADO.\nREDIRECIONANDO PARA O ARQUIVO...";
+          setTimeout(function () {
+            window.location.href = PAGINA_SECRETA;
+          }, 1200);
+        } else {
+          status.className = "error";
+          status.textContent = "ERRO 403: CHAVE INVÁLIDA.\nTENTATIVA REGISTRADA.";
+          campo.value = "";
+          campo.focus();
+          botao.disabled = false;
+        }
+      }, 900);
+    });
+  </script>
+</body>
+</html>
