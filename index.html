@@ -1,8 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>OCULI — Acesso restrito</title>
 
   <style>
@@ -177,6 +178,7 @@
 
   <script>
     const SENHA = "OGUARDIAO";
+
     const PAGINA_SECRETA =
       "https://siteinsano.github.io/oculi/pagina.html";
 
@@ -193,14 +195,17 @@
 
         if (senhaDigitada === SENHA) {
           mensagem.style.color = "#777";
-          mensagem.textContent = "CREDENCIAL ACEITA. REDIRECIONANDO...";
+          mensagem.textContent =
+            "CREDENCIAL ACEITA. REDIRECIONANDO...";
 
           setTimeout(function() {
             window.location.href = PAGINA_SECRETA;
           }, 700);
+
         } else {
           mensagem.style.color = "#b51e1e";
-          mensagem.textContent = "ACESSO NEGADO. CREDENCIAL INVÁLIDA.";
+          mensagem.textContent =
+            "ACESSO NEGADO. CREDENCIAL INVÁLIDA.";
         }
       });
   </script>
