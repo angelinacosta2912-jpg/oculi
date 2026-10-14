@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notícias — Serra Branca</title>
+<title>Jornal da Serra</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -42,9 +40,8 @@ nav {
     background: #a71919;
     color: white;
     padding: 10px;
-    font-family: Arial, sans-serif;
+    font: 13px Arial, sans-serif;
     text-align: center;
-    font-size: 13px;
 }
 
 main {
@@ -54,7 +51,6 @@ main {
     background: white;
     min-height: 80vh;
     box-shadow: 0 2px 10px #0002;
-    position: relative;
 }
 
 .category {
@@ -91,28 +87,61 @@ h2 {
     align-items: center;
     justify-content: center;
     margin: 20px 0;
-    overflow: hidden;
     font: 13px Arial, sans-serif;
+    overflow: hidden;
 }
 
-/* Substitua o espaço acima por uma imagem:
-   <img class="news-image" src="sua-imagem.jpg" alt="Imagem da notícia">
-*/
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 article {
     font-size: 18px;
     line-height: 1.85;
 }
 
+/* PALAVRAS SECRETAS */
+
 .secret {
+    position: relative;
+    display: inline-block;
     cursor: pointer;
     color: inherit;
     border-bottom: 1px dotted #999;
-    transition: color .2s;
 }
 
-.secret:hover {
-    color: #a71919;
+.secret.found {
+    color: #760000;
+    border-bottom: 0;
+    text-shadow: 0 0 2px #a0000033;
+    animation: bloodPulse 1.5s infinite;
+}
+
+.secret.found::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    bottom: -12px;
+    left: 45%;
+    background: #760000;
+    border-radius: 0 0 4px 4px;
+    animation: bloodDrip 1.4s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes bloodDrip {
+    0% { height: 0; }
+    35% { height: 10px; }
+    70% { height: 17px; }
+    100% { height: 12px; }
+}
+
+@keyframes bloodPulse {
+    0%, 100% { color: #760000; }
+    50% { color: #a00000; }
 }
 
 footer {
@@ -123,7 +152,7 @@ footer {
     font: 11px Arial, sans-serif;
 }
 
-/* CAMADA DOS POP-UPS */
+/* POP-UPS */
 
 #popup-layer {
     position: fixed;
@@ -135,81 +164,111 @@ footer {
 
 .popup {
     position: absolute;
-    width: 250px;
-    min-height: 125px;
-    background: #eee;
-    border: 1px solid #777;
-    box-shadow: 4px 5px 18px #0007;
+    width: 265px;
+    background: #080808;
+    color: #f2f2f2;
+    border: 1px solid #8e0000;
+    box-shadow: 0 0 15px #a0000055, 4px 5px 18px #0008;
     font-family: Arial, sans-serif;
-    color: #111;
     pointer-events: auto;
-    animation: appear .16s ease-out;
+    animation: popupAppear .09s ease-out;
 }
 
 .popup-bar {
-    height: 27px;
-    background: #242424;
-    color: white;
-    padding: 6px 9px;
-    font-size: 11px;
+    min-height: 38px;
+    background: #210000;
+    border-bottom: 1px solid #850000;
+    color: #f3eaea;
+    padding: 5px 7px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.popup-gif {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    object-fit: cover;
+    background: #360000;
+}
+
+.popup-title {
+    font-size: 10px;
+    flex: 1;
+    overflow: hidden;
 }
 
 .popup-x {
+    color: #ff3838;
+    font-size: 19px;
+    line-height: 20px;
+    padding: 0 4px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 12px;
 }
 
 .popup-content {
-    padding: 17px 12px 12px;
+    padding: 18px 12px 13px;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.5;
     overflow-wrap: anywhere;
 }
 
 .popup button {
-    margin-top: 15px;
-    padding: 6px 24px;
+    margin-top: 14px;
+    padding: 7px 28px;
+    color: white;
+    background: #230000;
+    border: 1px solid #b00000;
     cursor: pointer;
-    border: 1px solid #888;
-    background: #fafafa;
+    font-size: 13px;
 }
 
 .popup button:hover {
-    background: #ddd;
+    background: #650000;
 }
 
 .popup.central {
     position: fixed;
-    width: min(370px, 88vw);
-    min-height: 205px;
+    width: min(360px, 88vw);
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 99999;
-    border: 2px solid #850d0d;
-    box-shadow: 0 0 0 100vmax #0008, 0 0 35px #b00000;
+    border: 2px solid #c00000;
+    box-shadow: 0 0 0 100vmax #0009, 0 0 35px #a00000;
 }
 
-.central .popup-bar {
-    background: #8b0000;
+.popup.central .popup-content {
+    padding: 27px 18px;
+    font-size: 19px;
 }
 
-.central .popup-content {
-    padding: 25px 18px;
+.popup.central .popup-bar {
+    background: #3a0000;
+}
+
+.popup.address {
+    border-color: #ff1717;
+    box-shadow: 0 0 30px #c00000;
+}
+
+.popup.address .popup-content {
+    padding: 28px 12px;
+    color: #ff3030;
     font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+@keyframes popupAppear {
+    from { opacity: 0; transform: scale(.75); }
+    to { opacity: 1; }
 }
 
 .glitch {
     animation: glitch .12s infinite;
-}
-
-@keyframes appear {
-    from { opacity: 0; transform: scale(.75); }
-    to { opacity: 1; }
 }
 
 @keyframes glitch {
@@ -226,13 +285,9 @@ footer {
         padding: 18px;
     }
 
-    h2 {
-        font-size: 28px;
-    }
+    h2 { font-size: 28px; }
 
-    .popup {
-        width: 215px;
-    }
+    .popup { width: 230px; }
 }
 </style>
 </head>
@@ -286,7 +341,7 @@ footer {
             que compreendem os desígnios que lhes foram reservados.
             Pois <span class="secret" data-word="príncipe">príncipe</span>
             algum governa eternamente sem antes conhecer o silêncio
-            daqueles que o aguardam.
+            daqueles que o aguardam."
         </p>
 
         <p>
@@ -308,7 +363,7 @@ footer {
         <p>
             Por isso, não temais aquilo que ainda não conheceis.
             A verdade se revela aos poucos, e
-            <span class="secret" data-word="o">O</span>
+            <span class="secret" data-word="O">O</span>
             silêncio que antecede a revelação é mais terrível
             do que qualquer sentença pronunciada.
         </p>
@@ -359,23 +414,28 @@ footer {
             que a construção está fechada há vários anos.
         </p>
 
-        <p>
-            A investigação continua.
-        </p>
+        <p>A investigação continua.</p>
     </article>
 
     <footer>
         Jornal da Serra — Todos os direitos reservados.
-        Esta página integra uma narrativa ficcional.
     </footer>
 </main>
+
+<!-- ÁUDIO DE TERROR EM LOOP -->
+<audio
+    id="terror-audio"
+    src="sussurro.mp3"
+    loop
+    preload="auto">
+</audio>
 
 <div id="popup-layer"></div>
 
 <script>
 const layer = document.getElementById("popup-layer");
+const audio = document.getElementById("terror-audio");
 
-/* A ordem correta é esta. */
 const correctSequence = [
     "O",
     "primeiro",
@@ -387,107 +447,129 @@ const correctSequence = [
     "mais"
 ];
 
-let progress = 0;
-let sequenceStarted = false;
-let centralOpened = false;
-let popupCount = 0;
-
 const messages = [
-    "HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA",
-    "eu te vejo",
-    "Não adianta fugir",
-    "eu me lembro de tudo."
+    "Eu te vejo",
+    "Eu sei quem você é",
+    "você lembra de mim?",
+    "Abra os olhos",
+    "O primeiro guardião",
+    "Nada foge",
+    "HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHHAAHAAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHAHAHAHAA",
+    "NÃO OLHE PARA TRÁS"
 ];
 
-/* Clique nas palavras secretas. */
+let progress = 0;
+let centralOpened = false;
+let addressOpened = false;
+let popupCount = 0;
+
+const MAX_POPUPS = 180;
+
+/* PALAVRAS SECRETAS */
 document.querySelectorAll(".secret").forEach(word => {
     word.addEventListener("click", () => {
-        const value = word.dataset.word;
-
         if (centralOpened) return;
 
-        sequenceStarted = true;
+        const value = word.dataset.word;
 
         if (value === correctSequence[progress]) {
+            word.classList.add("found");
             progress++;
 
-            word.style.color = "#a71919";
-
+            /* A frase foi completada! */
             if (progress === correctSequence.length) {
-                openCentralPopup();
+                startFinalSequence();
             }
         } else {
-            progress = value === correctSequence[0] ? 1 : 0;
+            /* Errou: todas as palavras voltam ao normal. */
+            progress = 0;
+
+            document.querySelectorAll(".secret").forEach(item => {
+                item.classList.remove("found");
+            });
 
             document.body.classList.add("glitch");
+
             setTimeout(() => {
                 document.body.classList.remove("glitch");
-            }, 250);
+            }, 300);
         }
     });
 });
 
-/* Gera um pop-up secundário. */
-function createPopup(x, y, message) {
+/* ÁUDIO + POP-UP CENTRAL */
+function startFinalSequence() {
+    if (centralOpened) return;
+
+    centralOpened = true;
+
+    /* Começa o áudio e repete indefinidamente. */
+    audio.volume = 0.65;
+    audio.currentTime = 0;
+
+    audio.play().catch(() => {
+        /*
+        Se o navegador bloquear a reprodução, tenta novamente
+        na próxima interação do jogador.
+        */
+        const retryAudio = () => {
+            audio.play().catch(() => {});
+            document.removeEventListener("click", retryAudio);
+        };
+
+        document.addEventListener("click", retryAudio);
+    });
+
+    openCentralPopup();
+}
+
+/* CRIAR POP-UPS SECUNDÁRIOS */
+function createPopup(x, y) {
+    if (popupCount >= MAX_POPUPS) return;
+
     popupCount++;
 
     const popup = document.createElement("div");
     popup.className = "popup";
 
-    const maxX = Math.max(0, window.innerWidth - 260);
-    const maxY = Math.max(0, window.innerHeight - 150);
+    const maxX = Math.max(0, window.innerWidth - 270);
+    const maxY = Math.max(0, window.innerHeight - 160);
 
-    popup.style.left = Math.min(Math.max(0, x), maxX) + "px";
-    popup.style.top = Math.min(Math.max(0, y), maxY) + "px";
+    popup.style.left = Math.max(0, Math.min(x, maxX)) + "px";
+    popup.style.top = Math.max(0, Math.min(y, maxY)) + "px";
     popup.style.zIndex = 1000 + popupCount;
 
-    const text = message ||
+    const message =
         messages[Math.floor(Math.random() * messages.length)];
 
     popup.innerHTML = `
         <div class="popup-bar">
-            <span>Mensagem do sistema</span>
-            <span class="popup-x" title="Fechar">×</span>
+            <div class="popup-gif"></div>
+            <span class="popup-title">AVISO DO SISTEMA</span>
+            <span class="popup-x">×</span>
         </div>
+
         <div class="popup-content">
             <div class="message"></div>
             <button type="button">Ok</button>
         </div>
     `;
 
-    popup.querySelector(".message").textContent = text;
+    popup.querySelector(".message").textContent = message;
 
-    /*
-      Cada clique dentro de um pop-up secundário
-      cria dois novos pop-ups.
-    */
-    function multiply(event) {
-        event.stopPropagation();
-
-        if (popupCount > 100) {
-            popupCount = 0;
-            layer.querySelectorAll(".popup:not(.central)")
-                .forEach(p => p.remove());
-        }
-
-        const rect = popup.getBoundingClientRect();
-
-        for (let i = 0; i < 2; i++) {
-            const offsetX = (Math.random() - 0.5) * 300;
-            const offsetY = (Math.random() - 0.5) * 220;
-
-            createPopup(
-                rect.left + offsetX,
-                rect.top + offsetY
-            );
-        }
-    }
-
-    popup.addEventListener("click", multiply);
-
+    /* Cada OK gera duas novas janelas. */
     popup.querySelector("button").addEventListener("click", event => {
         event.stopPropagation();
+
+        const rect = popup.getBoundingClientRect();
         popup.remove();
+
+        for (let i = 0; i < 2; i++) {
+            createPopup(
+                rect.left + (Math.random() - 0.5) * 260,
+                rect.top + (Math.random() - 0.5) * 200
+            );
+        }
     });
 
     popup.querySelector(".popup-x").addEventListener("click", event => {
@@ -496,92 +578,91 @@ function createPopup(x, y, message) {
     });
 
     layer.appendChild(popup);
-    return popup;
 }
 
-/* A mensagem central não pode ser fechada no X. */
+/* PRIMEIRA JANELA: VOCÊ QUER JOGAR UM JOGO? */
 function openCentralPopup() {
-    if (centralOpened) return;
-
-    centralOpened = true;
-
     const popup = document.createElement("div");
     popup.className = "popup central";
 
     popup.innerHTML = `
         <div class="popup-bar">
-            <span>AVISO</span>
-            <span class="popup-x" title="Você não pode fechar isto">×</span>
+            <div class="popup-gif"></div>
+            <span class="popup-title">UMA PERGUNTA</span>
+            <span class="popup-x">×</span>
         </div>
 
         <div class="popup-content">
-            <div>
-                Você finalmente se lembrou.
-                <br><br>
-                <strong>Deseja continuar?</strong>
-            </div>
-            <button type="button" id="central-yes">Sim</button>
+            Você quer jogar um jogo?
+            <br>
+            <button type="button">Sim</button>
         </div>
     `;
 
-    /* O X não fecha o aviso. */
-    popup.querySelector(".popup-x").addEventListener("click", event => {
-        event.stopPropagation();
-
+    popup.querySelector(".popup-x").addEventListener("click", () => {
         popup.classList.remove("glitch");
         void popup.offsetWidth;
         popup.classList.add("glitch");
     });
 
-    /* O botão Sim continua a sequência narrativa. */
-    popup.querySelector("#central-yes").addEventListener("click", () => {
+    popup.querySelector("button").addEventListener("click", () => {
         popup.remove();
-
-        document.body.style.background = "#080808";
-        document.body.style.color = "#a00000";
-
-        document.querySelector("main").style.opacity = "0.12";
-
-        createPopup(
-            window.innerWidth / 2 - 125,
-            window.innerHeight / 2 - 60,
-            "eu me lembro de tudo."
-        );
-
-        createPopup(
-            Math.random() * Math.max(1, window.innerWidth - 250),
-            Math.random() * Math.max(1, window.innerHeight - 140),
-            "Não adianta fugir"
-        );
-
-        createPopup(
-            Math.random() * Math.max(1, window.innerWidth - 250),
-            Math.random() * Math.max(1, window.innerHeight - 140),
-            "HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA"
-        );
-
-        setInterval(() => {
-            createPopup(
-                Math.random() * Math.max(1, window.innerWidth - 250),
-                Math.random() * Math.max(1, window.innerHeight - 150)
-            );
-        }, 1800);
+        openAddressPopup();
     });
 
     layer.appendChild(popup);
 }
 
-/* Depois de começar a sequência, os pop-ups surgem aos poucos. */
-setInterval(() => {
-    if (sequenceStarted && !centralOpened) {
-        if (Math.random() < 0.45) {
+/* SEGUNDA JANELA: ENDEREÇO PERMANENTE */
+function openAddressPopup() {
+    if (addressOpened) return;
+
+    addressOpened = true;
+
+    const popup = document.createElement("div");
+    popup.className = "popup central address";
+
+    popup.innerHTML = `
+        <div class="popup-bar">
+            <div class="popup-gif"></div>
+            <span class="popup-title">DESTINO ENCONTRADO</span>
+            <span class="popup-x">×</span>
+        </div>
+
+        <div class="popup-content">
+            Floresta negra,<br>casa 13
+        </div>
+    `;
+
+    /* O X nunca fecha o endereço. */
+    popup.querySelector(".popup-x").addEventListener("click", () => {
+        popup.classList.remove("glitch");
+        void popup.offsetWidth;
+        popup.classList.add("glitch");
+    });
+
+    layer.appendChild(popup);
+
+    /* JANELAS SURGEM RAPIDAMENTE */
+    const spawnTimer = setInterval(() => {
+        if (popupCount >= MAX_POPUPS) {
+            clearInterval(spawnTimer);
+            return;
+        }
+
+        createPopup(
+            Math.random() * Math.max(1, window.innerWidth - 270),
+            Math.random() * Math.max(1, window.innerHeight - 160)
+        );
+
+        if (Math.random() < 0.35) {
             createPopup(
-                Math.random() * Math.max(1, window.innerWidth - 250),
-                Math.random() * Math.max(1, window.innerHeight - 150)
+                Math.random() * Math.max(1, window.innerWidth - 270),
+                Math.random() * Math.max(1, window.innerHeight - 160)
             );
         }
-    }
-}, 3000);
+    }, 110);
+}
 </script>
 
 </body>
